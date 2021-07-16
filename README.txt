@@ -1,6 +1,7 @@
 Author: Josiah Anderson
 Language: Java version 15.0.2
 
+Overview:
 This is a program that parses a CSV file populated with all Netflix offerings as of January 2021. It adds all the records to an ArrayList<Media> object as either Movie objects or Series objects. The program searches through the ArrayList and grabs the results dependant on the filters added. It allows the user to add as many filters as they want, i.e. type(movie, series), title, cast, director, country (made in), (release) year, runtime(in minutes), (content) rating, genre, and finally a generic text search that searches for all occurrences of said text within any and all records. 
 
 Just a disclaimer, the way the search is set up ("and-ed together"), if both a movie filter and a series filter were added, there would be 0 results because a record cannot be both a movie and a series.
