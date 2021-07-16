@@ -319,12 +319,6 @@ public class Client{
 		}
 	}
 
-	public static void printGenericMenu(String input){
-		System.out.print("\nADD " + input.toUpperCase() +" MENU\n" + 
-						   "Enter B/b to go back to the Main Menu\n\n" +
-						   ">>> " + input + " ");
-	}
-
 	public static void printAddMenu(){
 		System.out.print("\nADD FILTER MENU\n" + 
 						   "Enter F/f to see the filter types.\n" + 
@@ -365,7 +359,6 @@ public class Client{
 	}
 	// will work for title, director, cast, country, rating, listed in and description
 	public static void addGenericFilter(String input, ArrayList<Filter> filterList){
-		printGenericMenu(input);
 		String furtherInput="";
 		Scanner scan = new Scanner(System.in);
 		furtherInput=scan.nextLine();
@@ -376,14 +369,10 @@ public class Client{
 	// overloaded takes in "further input" already
 	// will work for title, director, cast, country, rating, listed in and description
 	public static void addGenericFilter(String input, String furtherInput, ArrayList<Filter> filterList){
-		printGenericMenu(input);
-		
 		filterList.add(new Filter(input,furtherInput));
 	}
 	
 	public static void addMovieFilter(String input, ArrayList<Filter> filterList){
-		printGenericMenu(input);
-		
 		boolean duplicate = false;
 		for(Filter filter : filterList){
 			if(filter.getFieldName().toLowerCase() == "movie"){
@@ -400,9 +389,7 @@ public class Client{
 	}
 
 	//add series filter
-	public static void addSeriesFilter(String input, ArrayList<Filter> filterList){
-		printGenericMenu(input);
-	
+	public static void addSeriesFilter(String input, ArrayList<Filter> filterList){	
 		boolean duplicate = false;
 		for(Filter filter : filterList){
 			if(filter.getFieldName().toLowerCase() == "tv show"){
