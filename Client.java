@@ -92,8 +92,11 @@ public class Client{
 		while(backToMainMenu==false){
 
 			input = scan.nextLine();
+			// choice holds all words input by user, this way there is a way to check if 
+			// user forgot to actually add the parameter(s) to search for
 			String[] choice = input.split(" ");
 			input = choice[0];
+
 			// get rest of input and assign to furtherInput
 			String furtherInput = getFurtherInput(choice);
 			//title, director, cast, country, rating, listed in and description use
@@ -140,7 +143,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -155,7 +158,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -169,7 +172,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -183,7 +186,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -197,7 +200,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -211,7 +214,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -319,12 +322,6 @@ public class Client{
 		}
 	}
 
-	public static void printGenericMenu(String input){
-		System.out.print("\nADD " + input.toUpperCase() +" MENU\n" + 
-						   "Enter B/b to go back to the Main Menu\n\n" +
-						   ">>> " + input + " ");
-	}
-
 	public static void printAddMenu(){
 		System.out.print("\nADD FILTER MENU\n" + 
 						   "Enter F/f to see the filter types.\n" + 
@@ -364,10 +361,11 @@ public class Client{
 		filterList.add(filter);
 	}
 	// will work for title, director, cast, country, rating, listed in and description
-	public static void addGenericFilter(String input, ArrayList<Filter> filterList){
-		printGenericMenu(input);
+	public static void getMissingParameters(String input, ArrayList<Filter> filterList){
 		String furtherInput="";
 		Scanner scan = new Scanner(System.in);
+		System.out.print("Oops, it looks like you forgot to include the parameters you want to search for. Include them now.\n"
+						  + ">>> " + input + " ");
 		furtherInput=scan.nextLine();
 
 		filterList.add(new Filter(input,furtherInput));
@@ -376,14 +374,10 @@ public class Client{
 	// overloaded takes in "further input" already
 	// will work for title, director, cast, country, rating, listed in and description
 	public static void addGenericFilter(String input, String furtherInput, ArrayList<Filter> filterList){
-		printGenericMenu(input);
-		
 		filterList.add(new Filter(input,furtherInput));
 	}
 	
 	public static void addMovieFilter(String input, ArrayList<Filter> filterList){
-		printGenericMenu(input);
-		
 		boolean duplicate = false;
 		for(Filter filter : filterList){
 			if(filter.getFieldName().toLowerCase() == "movie"){
@@ -400,9 +394,7 @@ public class Client{
 	}
 
 	//add series filter
-	public static void addSeriesFilter(String input, ArrayList<Filter> filterList){
-		printGenericMenu(input);
-	
+	public static void addSeriesFilter(String input, ArrayList<Filter> filterList){	
 		boolean duplicate = false;
 		for(Filter filter : filterList){
 			if(filter.getFieldName().toLowerCase() == "tv show"){
