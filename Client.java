@@ -92,8 +92,11 @@ public class Client{
 		while(backToMainMenu==false){
 
 			input = scan.nextLine();
+			// choice holds all words input by user, this way there is a way to check if 
+			// user forgot to actually add the parameter(s) to search for
 			String[] choice = input.split(" ");
 			input = choice[0];
+
 			// get rest of input and assign to furtherInput
 			String furtherInput = getFurtherInput(choice);
 			//title, director, cast, country, rating, listed in and description use
@@ -140,7 +143,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -155,7 +158,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -169,7 +172,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -183,7 +186,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -197,7 +200,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -211,7 +214,7 @@ public class Client{
 						addGenericFilter(input.toLowerCase(),furtherInput,filterList);
 					}
 					else{
-						addGenericFilter(input.toLowerCase(),filterList);
+						getMissingParameters(input.toLowerCase(),filterList);
 					}
 					
 					System.out.print("\npeek of filters: " + filterList);
@@ -358,9 +361,11 @@ public class Client{
 		filterList.add(filter);
 	}
 	// will work for title, director, cast, country, rating, listed in and description
-	public static void addGenericFilter(String input, ArrayList<Filter> filterList){
+	public static void getMissingParameters(String input, ArrayList<Filter> filterList){
 		String furtherInput="";
 		Scanner scan = new Scanner(System.in);
+		System.out.print("Oops, it looks like you forgot to include the parameters you want to search for. Include them now.\n"
+						  + ">>> " + input + " ");
 		furtherInput=scan.nextLine();
 
 		filterList.add(new Filter(input,furtherInput));
